@@ -1,0 +1,127 @@
+
+
+# git 관련
+
+## How to use git efficiently
+https://github.com/mindslab-ai/minds-stt/wiki/How-to-use-git-efficiently
+
+## branch 받기
+
+git clone -b <branch> <remote_repo> 
+
+git clone -b newver git@github.com:mindslab-ai/mlt.git newver
+newver폴더에 클론함..
+
+# Rebase
+여러 커밋메세지가 존재할 경우 이를 하나로 만들어 편리하게 할 때 사용
+
+# Pull Request
+자신의 브랜치(ex feat/1111)에 커밋 푸시하면 자신의 브랜치에 반영이 되지만 이를 canery에 합치기 위해서는 pull request를 통해 누군가의 허락을 받아야 한다.
+
+## submodule 다운로드
+git submodule update --init --recursive
+
+## newer 디렉토리 들어가서 
+./build.sh /svr/minds/ libminds
+./build.sh /svr/minds/ stt
+./build.sh /svr/minds/ ta
+./build.sh /svr/minds/ config
+
+# 인텔리J에서 클론 받기
+1.위의 탭 VCS -> Check out from... 선택-> git 선택
+2.오른쪽 아래에서 브랜치 선택
+3.터미널로 client 들어가서 npm install 후 npm start
+
+# package.json 관련
+package.json 터미널에서 입력가능하게 생성 : npm init
+package.json 기본 설정값으로 생성 : npm init --yes
+
+## 패키지 구성 후 패키지 설치
+npm install
+
+## Angular 개발서버 실행
+npm start
+
+## Angular CLI 프로젝트 생성
+36p 참고
+
+## 인텔리J 코드정렬 스타일 등록
+파일을 내려받고 좌측 상단 File- Setting- Code Style- Scheme 옆옆 톱니버튼- Import Scheme- Intellij....
+
+# 스프링 서버 실행
+1. submodule들어가서 다운로드
+
+2. proto/ta/wordembedding.proto를 아래와 같이 변경
+```
+syntax = "proto3";
+
+package minds.ta;
+
+message WordEmbeddingInputText {
+  string text = 1;
+}
+
+enum WordEmbeddingAnalysisLevel {
+  WORD_EMBEDDING_SINGLE_WORD = 0;
+  WORD_EMBEDDING_TWO_WORDS = 1;
+  WORD_EMBEDDING_MULTIPLE_WORDS = 2;
+  WORD_EMBEDDING_SENTENCE_WORDS = 3;
+  WORD_EMBEDDING_UNAVAILABLE = 99;
+}
+
+message WordEmbeddingDocument {
+  repeated string word = 1;
+  repeated float similarity = 2;
+  WordEmbeddingAnalysisLevel analysis_level = 3;
+}
+
+service WordEmbeddingService {
+  rpc GetWordEmbedding (WordEmbeddingInputText) returns (WordEmbeddingDocument);
+}
+
+
+```
+3.서버 클린(그래들에서 server-clean) 후 빌드 디펜던시(server-buildDependents)
+4. mlt 그래들에서 buildRoot 실행
+5. bootRun 실행
+
+6. mysql 설치
+mysql -u root -p //mysql 실행
+- minds/암호 :ggoggoma 유저 생성
+- CREATE DATABASE admin_console
+- GRANT ALL PRIVILEGES ON admin_console.* TO minds@localhost IDENTIFIED BY 'ggoggoma';
+- mysql> flush privileges; 변경된 권한 적용하기 
+application.properties 파일 
+```
+##spring.datasource.tomcat.test-on-borrow=true
+##spring.datasource.tomcat.testWhileIdle=true
+##spring.datasource.validation-query=SELECT 1
+주석처리
+```
+
+# 커밋,푸쉬를 잘못했을 때
+```
+git log		//커밋리스트를 본다.
+git reset HEAD^1	// 1번 커밋을 돌린다.
+git status	//자신이 살릴 코드를 적어놓는다.
+git add .... //살릴 리스트 넣기 
+
+git commit
+
+git push -f origin feat/798
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

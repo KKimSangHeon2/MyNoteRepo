@@ -1,2 +1,1 @@
-
-test
+spring.jpa.hibernate.ddl-auto=create-drop

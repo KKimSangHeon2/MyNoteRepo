@@ -1,9 +1,9 @@
-# ÁÖÀÇ»çÇ×
+# ì£¼ì˜ì‚¬í•­
 
-AWS, À©µµ¿ì¿¡¼­ µ¹¸±¶§¸¶´Ù ÇÑ¹ø¾¿ installÇØ¾ßÇÑ´Ù.
+AWS, ìœˆë„ìš°ì—ì„œ ëŒë¦´ë•Œë§ˆë‹¤ í•œë²ˆì”© installí•´ì•¼í•œë‹¤.
 
 npm install --save cheerio
 
 
-¹ö½ºÁ¶È¸±â´É ¿¡·¯¹ß»ý.. 
-ÁÖ±âÀûÀ¸·Î È®ÀÎÇÒ°Í.
+ë²„ìŠ¤ì¡°íšŒê¸°ëŠ¥ ì—ëŸ¬ë°œìƒ.. 
+ê³µê³µAPI ì ìš©í•˜ìž..
